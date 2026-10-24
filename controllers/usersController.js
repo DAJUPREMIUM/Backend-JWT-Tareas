@@ -70,6 +70,7 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 const datosUser = asyncHandler(async (req, res) => {
+    res.status(200).json(req.user) // req.user es el usuario que se encuentra en el token
 
 })
 
