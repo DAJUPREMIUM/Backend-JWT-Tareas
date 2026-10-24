@@ -38,6 +38,15 @@ const updateTareas = asyncHandler(async (req, res) => {
 })
 
 const deleteTareas = asyncHandler(async (req, res) => {
-    res.status(200).json({message: `Delete Tareas ${req.params.id}`})
+
+    const tarea = await Tarea.findById(req.params.id)
+
+    if(!tarea){
+        res.status(404)
+        throw new Error('Tarea especificada no existe')
+    }
+    await Tarea.deleteOne(tarea)
+
+    res.status(200).json({id: req.params.id})
 })
 module.exports = {getTareas, createTareas, updateTareas, deleteTareas}
