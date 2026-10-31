@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
-const User = require('../models/userModels.js')
+const User = require('../models/user.Models.js')
 const asyncHandler = require('express-async-handler') // maneja errores de manera asincrona
+
 const protect = asyncHandler(async (req, res, next) => {
     let token
 
@@ -17,12 +18,13 @@ const protect = asyncHandler(async (req, res, next) => {
             console.error(error)
             res.status(401)
             throw new Error('Acceso no autorizado, token no valido')
-        } 
-
-        if (!token) {
-            res.status(401)
-            throw new Error('Acceso no autorizado, token no valido')
         }
-    }})
-    
+    }
+
+    if (!token) {
+        res.status(401)
+        throw new Error('Acceso no autorizado, no se proporciono un token')
+    }
+})
+
 module.exports = { protect }

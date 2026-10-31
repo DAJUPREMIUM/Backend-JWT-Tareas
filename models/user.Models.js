@@ -1,5 +1,7 @@
+const mongoose = require('mongoose')
+
 const userSchema = new mongoose.Schema({
-    name: {
+    nombre: {
         type: String,
         required: [true, 'Por favor teclea tu nombre']
     },

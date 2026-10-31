@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const asyncHandler = require('express-async-handler') // maneja errores de manera asincrona
-const User = require('../models/userModels.js')
+const User = require('../models/user.Models.js')
 
 const crearUser = asyncHandler(async (req, res) => {
     // desestructuramos el body de la request
@@ -76,7 +76,7 @@ const datosUser = asyncHandler(async (req, res) => {
 })
 
 const generarToken = (id_usuario) => {
-    return jwt.sign({ id_usuario }, process.env.JWT_SECRET, {
+    return jwt.sign({ id: id_usuario }, process.env.JWT_SECRET, {
         expiresIn: '30d'
     })
 }
